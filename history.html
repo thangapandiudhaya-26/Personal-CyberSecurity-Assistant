@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Analysis History - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="profile.html">
+                👤 Profile
+            </a>
+
+            <a href="history.html">
+                📜 History
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- HISTORY SECTION -->
+
+    <main class="history-container">
+
+
+        <section class="history-header">
+
+            <h1>
+                📜 Analysis History
+            </h1>
+
+            <p>
+                View your previous CyberGuard security analyses.
+            </p>
+
+        </section>
+
+
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="history-actions">
+
+            <button
+                onclick="loadHistory()"
+                class="refresh-button"
+            >
+                🔄 Refresh History
+            </button>
+
+
+            <button
+                onclick="clearHistory()"
+                class="clear-button"
+            >
+                🗑️ Clear History
+            </button>
+
+        </div>
+
+
+
+        <!-- MESSAGE -->
+
+        <p
+            id="historyMessage"
+            class="history-message"
+        >
+        </p>
+
+
+
+        <!-- HISTORY RESULTS -->
+
+        <section
+            id="historyList"
+            class="history-list"
+        >
+
+            <p>
+                Loading your analysis history...
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+
+    <script>
+
+
+        // =====================================
+        // LOAD HISTORY
+        // =====================================
+
+        async function loadHistory() {
+
+            const historyList =
+                document.getElementById(
+                    "historyList"
+                );
+
+            const messageBox =
+                document.getElementById(
+                    "historyMessage"
+                );
+
+
+            historyList.innerHTML =
+                "<p>Loading history...</p>";
+
+            messageBox.innerText = "";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/history"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                // USER NOT LOGGED IN
+
+                if (!data.success) {
+
+                    messageBox.innerText =
+                        "Please login first.";
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 1500);
+
+                    return;
+
+                }
+
+
+                // NO HISTORY
+
+                if (
+                    !data.history ||
+                    data.history.length === 0
+                ) {
+
+                    historyList.innerHTML = `
+
+                        <div class="empty-history">
+
+                            <h2>
+                                No Analysis History Yet
+                            </h2>
+
+                            <p>
+                                Perform a URL, message,
+                                email, or payment security
+                                check and your results will
+                                appear here.
+                            </p>
+
+                            <a
+                                href="dashboard.html"
+                            >
+                                Go to Dashboard
+                            </a>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                // CLEAR OLD RESULTS
+
+                historyList.innerHTML = "";
+
+
+                // DISPLAY EACH ANALYSIS
+
+                data.history.forEach(
+                    function(item) {
+
+
+                        let riskClass =
+                            "low-risk";
+
+
+                        if (
+                            item.risk_score >= 70
+                        ) {
+
+                            riskClass =
+                                "high-risk";
+
+                        }
+
+                        else if (
+                            item.risk_score >= 40
+                        ) {
+
+                            riskClass =
+                                "suspicious-risk";
+
+                        }
+
+
+                        // LIMIT VERY LONG CONTENT
+
+                        let displayContent =
+                            item.content;
+
+
+                        if (
+                            displayContent.length > 150
+                        ) {
+
+                            displayContent =
+                                displayContent.substring(
+                                    0,
+                                    150
+                                ) + "...";
+
+                        }
+
+
+                        // CREATE HISTORY CARD
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "history-card";
+
+
+                        card.innerHTML = `
+
+                            <div
+                                class="history-card-header"
+                            >
+
+                                <h2>
+                                    ${item.type}
+                                </h2>
+
+                                <span
+                                    class="${riskClass}"
+                                >
+                                    ${item.risk_level}
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="history-content"
+                            >
+
+                                <strong>
+                                    Checked Content:
+                                </strong>
+
+                                <p>
+                                    ${displayContent}
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                class="history-score"
+                            >
+
+                                Risk Score:
+
+                                <strong>
+                                    ${item.risk_score}/100
+                                </strong>
+
+                            </div>
+
+
+                            <div
+                                class="history-time"
+                            >
+
+                                🕒 ${item.time}
+
+                            </div>
+
+                        `;
+
+
+                        historyList.appendChild(
+                            card
+                        );
+
+
+                    }
+                );
+
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+
+                historyList.innerHTML = `
+
+                    <div class="empty-history">
+
+                        <h2>
+                            Unable to Load History
+                        </h2>
+
+                        <p>
+                            Unable to connect to the server.
+                            Make sure app.py is running.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // CLEAR HISTORY
+        // =====================================
+
+        async function clearHistory() {
+
+            const messageBox =
+                document.getElementById(
+                    "historyMessage"
+                );
+
+
+            const confirmClear =
+                confirm(
+                    "Are you sure you want to clear all your analysis history?"
+                );
+
+
+            if (!confirmClear) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/clear-history",
+                        {
+
+                            method: "POST"
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.success) {
+
+                    messageBox.innerText =
+                        "✅ History cleared successfully!";
+
+
+                    loadHistory();
+
+                }
+
+                else {
+
+                    messageBox.innerText =
+                        "❌ " + data.message;
+
+                }
+
+
+            }
+
+            catch (error) {
+
+                messageBox.innerText =
+                    "❌ Unable to connect to server.";
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // LOAD HISTORY WHEN PAGE OPENS
+        // =====================================
+
+        loadHistory();
+
+
+    </script>
+
+
+</body>
+
+</html>

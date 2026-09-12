@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="profile.html">
+                👤 Profile
+            </a>
+
+            <a href="history.html">
+                📜 History
+            </a>
+
+            <button
+                onclick="logout()"
+                class="logout-nav-button"
+            >
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- DASHBOARD -->
+
+    <main class="dashboard-container">
+
+
+        <!-- WELCOME -->
+
+        <section class="dashboard-welcome">
+
+            <h1 id="welcomeMessage">
+                👋 Welcome to CyberGuard!
+            </h1>
+
+            <p>
+                Your personal cybersecurity assistant.
+                Check suspicious links, messages, emails,
+                and payment requests to stay safer online.
+            </p>
+
+        </section>
+
+
+
+        <!-- DASHBOARD CARDS -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- URL CHECKER -->
+
+            <a
+                href="url-checker.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    🔗
+                </div>
+
+                <h2>
+                    URL Security Checker
+                </h2>
+
+                <p>
+                    Check suspicious website links and
+                    identify possible security risks.
+                </p>
+
+                <span>
+                    Check URL →
+                </span>
+
+            </a>
+
+
+
+            <!-- MESSAGE CHECKER -->
+
+            <a
+                href="message-checker.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    💬
+                </div>
+
+                <h2>
+                    Scam Message Detector
+                </h2>
+
+                <p>
+                    Analyze suspicious SMS and messages
+                    for possible scam patterns.
+                </p>
+
+                <span>
+                    Check Message →
+                </span>
+
+            </a>
+
+
+
+            <!-- EMAIL CHECKER -->
+
+            <a
+                href="email-checker.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    📧
+                </div>
+
+                <h2>
+                    Email Security Checker
+                </h2>
+
+                <p>
+                    Analyze suspicious emails and identify
+                    possible phishing patterns.
+                </p>
+
+                <span>
+                    Check Email →
+                </span>
+
+            </a>
+
+
+
+            <!-- PAYMENT CHECKER -->
+
+            <a
+                href="payment-checker.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    💳
+                </div>
+
+                <h2>
+                    Payment Scam Checker
+                </h2>
+
+                <p>
+                    Check suspicious payment requests,
+                    UPI messages, and financial scams.
+                </p>
+
+                <span>
+                    Check Payment →
+                </span>
+
+            </a>
+
+
+
+            <!-- SECURITY CHECKUP -->
+
+            <a
+                href="security-checkup.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    🛡️
+                </div>
+
+                <h2>
+                    Security Checkup
+                </h2>
+
+                <p>
+                    Answer security questions and check
+                    your current cybersecurity habits.
+                </p>
+
+                <span>
+                    Start Checkup →
+                </span>
+
+            </a>
+
+
+
+            <!-- SECURITY TIPS -->
+
+            <a
+                href="security-tips.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    💡
+                </div>
+
+                <h2>
+                    Security Tips
+                </h2>
+
+                <p>
+                    Learn simple cybersecurity tips to
+                    protect your accounts and devices.
+                </p>
+
+                <span>
+                    View Tips →
+                </span>
+
+            </a>
+
+
+
+            <!-- HISTORY -->
+
+            <a
+                href="history.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    📜
+                </div>
+
+                <h2>
+                    Analysis History
+                </h2>
+
+                <p>
+                    View your previous CyberGuard
+                    security analysis results.
+                </p>
+
+                <span>
+                    View History →
+                </span>
+
+            </a>
+
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="profile.html"
+                class="dashboard-card"
+            >
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <h2>
+                    My Profile
+                </h2>
+
+                <p>
+                    View and update your CyberGuard
+                    account details and password.
+                </p>
+
+                <span>
+                    Open Profile →
+                </span>
+
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        // =====================================
+        // CHECK LOGGED-IN USER
+        // =====================================
+
+        async function checkUser() {
+
+            try {
+
+                const response =
+                    await fetch("/api/profile");
+
+
+                const data =
+                    await response.json();
+
+
+                // USER NOT LOGGED IN
+
+                if (!data.success) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                // SHOW USER NAME
+
+                document
+                    .getElementById(
+                        "welcomeMessage"
+                    )
+                    .textContent =
+                        "👋 Welcome, " +
+                        data.name +
+                        "!";
+
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+
+                document
+                    .getElementById(
+                        "welcomeMessage"
+                    )
+                    .textContent =
+                        "Unable to connect to server.";
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // LOGOUT
+        // =====================================
+
+        async function logout() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/logout",
+                        {
+
+                            method: "POST"
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.success) {
+
+                    localStorage.removeItem(
+                        "cyberguardUserName"
+                    );
+
+                    localStorage.removeItem(
+                        "cyberguardUserEmail"
+                    );
+
+
+                    alert(
+                        "Logged out successfully!"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+            }
+
+            catch (error) {
+
+                alert(
+                    "Unable to connect to server."
+                );
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // RUN WHEN PAGE OPENS
+        // =====================================
+
+        checkUser();
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel | CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="tool-page-body">
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">🛡️</span>
+
+            <span class="logo-text">
+                <strong>CyberGuard Admin</strong>
+                <small>Cybersecurity Management Panel</small>
+            </span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="dashboard.html">User Dashboard</a>
+
+            <a href="admin.html" class="active">
+                Admin Panel
+            </a>
+
+            <a href="profile.html" class="nav-login">
+                Profile
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Admin Header -->
+    <section class="tool-header">
+
+        <div class="tool-header-icon">
+            👨‍💻
+        </div>
+
+        <div>
+
+            <span class="section-tag">
+                ADMIN CONTROL CENTER
+            </span>
+
+            <h1>CyberGuard Admin Dashboard</h1>
+
+            <p>
+                Monitor users, security checks, suspicious activity,
+                and cybersecurity analysis across the system.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="tool-container">
+
+
+        <!-- Admin Statistics -->
+        <section class="dashboard-stats">
+
+
+            <div class="dashboard-stat-card blue-stat">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <p>Total Users</p>
+
+                    <h2 id="adminTotalUsers">
+                        125
+                    </h2>
+
+                    <span>Registered users</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat-card green-stat">
+
+                <div class="stat-icon">
+                    🔍
+                </div>
+
+                <div>
+
+                    <p>Total Checks</p>
+
+                    <h2 id="adminTotalChecks">
+                        1,248
+                    </h2>
+
+                    <span>Security analyses</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat-card yellow-stat">
+
+                <div class="stat-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <p>Suspicious</p>
+
+                    <h2 id="adminSuspiciousChecks">
+                        86
+                    </h2>
+
+                    <span>Needs review</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat-card red-stat">
+
+                <div class="stat-icon">
+                    🚨
+                </div>
+
+                <div>
+
+                    <p>High Risk</p>
+
+                    <h2 id="adminHighRiskChecks">
+                        24
+                    </h2>
+
+                    <span>Threats detected</span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- Admin Quick Actions -->
+        <section class="analysis-card">
+
+            <div class="analysis-card-header">
+
+                <div>
+
+                    <h2>Admin Quick Actions</h2>
+
+                    <p>
+                        Manage CyberGuard system activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="example-grid">
+
+
+                <div class="example-card">
+
+                    <div class="example-icon">
+                        👥
+                    </div>
+
+                    <h3>Manage Users</h3>
+
+                    <p>
+                        View registered users and account information.
+                    </p>
+
+                    <button
+                        class="primary-action-btn"
+                        onclick="showAdminSection('users')"
+                    >
+                        View Users
+                    </button>
+
+                </div>
+
+
+                <div class="example-card">
+
+                    <div class="example-icon">
+                        🚨
+                    </div>
+
+                    <h3>Risk Reports</h3>
+
+                    <p>
+                        Review high-risk and suspicious security checks.
+                    </p>
+
+                    <button
+                        class="primary-action-btn"
+                        onclick="showAdminSection('risks')"
+                    >
+                        View Reports
+                    </button>
+
+                </div>
+
+
+                <div class="example-card">
+
+                    <div class="example-icon">
+                        📊
+                    </div>
+
+                    <h3>System Analytics</h3>
+
+                    <p>
+                        Monitor overall cybersecurity activity.
+                    </p>
+
+                    <button
+                        class="primary-action-btn"
+                        onclick="showAdminSection('analytics')"
+                    >
+                        View Analytics
+                    </button>
+
+                </div>
+
+
+                <div class="example-card">
+
+                    <div class="example-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>System Settings</h3>
+
+                    <p>
+                        Manage CyberGuard system settings.
+                    </p>
+
+                    <button
+                        class="primary-action-btn"
+                        onclick="showAdminSection('settings')"
+                    >
+                        Settings
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent High Risk Incidents -->
+        <section class="analysis-card">
+
+            <div class="analysis-card-header">
+
+                <div>
+
+                    <h2>🚨 Recent High Risk Incidents</h2>
+
+                    <p>
+                        Latest suspicious activity detected by CyberGuard.
+                    </p>
+
+                </div>
+
+                <span class="risk-badge high-risk">
+                    Admin Review
+                </span>
+
+            </div>
+
+
+            <div class="history-list">
+
+
+                <div class="history-item">
+
+                    <div class="history-icon">
+                        🔗
+                    </div>
+
+                    <div class="history-details">
+
+                        <h3>Suspicious URL Detected</h3>
+
+                        <p>
+                            Possible phishing website
+                        </p>
+
+                        <small>
+                            Today • 11:30 AM
+                        </small>
+
+                    </div>
+
+                    <div class="history-result">
+
+                        <span class="risk-badge high-risk">
+                            High Risk
+                        </span>
+
+                        <strong>
+                            94/100
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="history-item">
+
+                    <div class="history-icon">
+                        💳
+                    </div>
+
+                    <div class="history-details">
+
+                        <h3>Payment Scam Warning</h3>
+
+                        <p>
+                            Urgent payment request detected
+                        </p>
+
+                        <small>
+                            Today • 10:15 AM
+                        </small>
+
+                    </div>
+
+                    <div class="history-result">
+
+                        <span class="risk-badge high-risk">
+                            High Risk
+                        </span>
+
+                        <strong>
+                            91/100
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="history-item">
+
+                    <div class="history-icon">
+                        📧
+                    </div>
+
+                    <div class="history-details">
+
+                        <h3>Suspicious Email</h3>
+
+                        <p>
+                            Possible impersonation attempt
+                        </p>
+
+                        <small>
+                            Yesterday • 08:45 PM
+                        </small>
+
+                    </div>
+
+                    <div class="history-result">
+
+                        <span class="risk-badge suspicious-risk">
+                            Suspicious
+                        </span>
+
+                        <strong>
+                            76/100
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- User Management -->
+        <section
+            class="analysis-card admin-section"
+            id="usersSection"
+        >
+
+            <div class="analysis-card-header">
+
+                <div>
+
+                    <h2>👥 User Management</h2>
+
+                    <p>
+                        View and manage CyberGuard users.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-table-container">
+
+                <table class="admin-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Checks</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>CG001</td>
+                            <td>User One</td>
+                            <td>user1@example.com</td>
+                            <td>12</td>
+
+                            <td>
+                                <span class="status-good">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>CG002</td>
+                            <td>User Two</td>
+                            <td>user2@example.com</td>
+                            <td>8</td>
+
+                            <td>
+                                <span class="status-good">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>CG003</td>
+                            <td>User Three</td>
+                            <td>user3@example.com</td>
+                            <td>21</td>
+
+                            <td>
+                                <span class="status-warning">
+                                    Review
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- System Status -->
+        <section class="security-warning">
+
+            <div class="warning-icon">
+                🖥️
+            </div>
+
+            <div>
+
+                <h3>System Status: Operational</h3>
+
+                <p>
+                    CyberGuard security analysis services are currently
+                    running normally. All major security modules are active.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CyberGuard Admin Panel | System Security Management 🛡️
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

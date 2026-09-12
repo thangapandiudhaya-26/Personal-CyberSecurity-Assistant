@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code Security Checker | CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="tool-page-body">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">🛡️</span>
+
+            <span class="logo-text">
+                <strong>CyberGuard</strong>
+                <small>Personal Cybersecurity Assistant</small>
+            </span>
+
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="history.html">History</a>
+            <a href="profile.html" class="nav-login">Profile</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Tool Header -->
+    <section class="tool-header">
+
+        <div class="tool-header-icon">
+            📱
+        </div>
+
+        <div>
+
+            <span class="section-tag">
+                QR SECURITY TOOL
+            </span>
+
+            <h1>QR Code Security Checker</h1>
+
+            <p>
+                Upload a QR code and check its destination before
+                visiting any suspicious website.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="tool-container">
+
+
+        <!-- QR Upload Card -->
+        <section class="analysis-card">
+
+            <div class="analysis-card-header">
+
+                <div>
+
+                    <h2>Upload a QR Code</h2>
+
+                    <p>
+                        Select a QR code image for security analysis.
+                    </p>
+
+                </div>
+
+                <span class="tool-status">
+                    🔒 Secure Analysis
+                </span>
+
+            </div>
+
+
+            <form id="qrCheckForm">
+
+
+                <!-- Upload Area -->
+                <div class="qr-upload-area">
+
+                    <div class="upload-icon">
+                        📷
+                    </div>
+
+                    <h3>Upload QR Code Image</h3>
+
+                    <p>
+                        Choose a QR code image from your device.
+                    </p>
+
+                    <label for="qrImage" class="upload-btn">
+
+                        📁 Choose Image
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="qrImage"
+                        accept="image/*"
+                        required
+                    >
+
+                    <p
+                        id="selectedFile"
+                        class="selected-file"
+                    >
+                        No file selected
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    🔍 Scan and Analyze QR Code
+                </button>
+
+            </form>
+
+
+            <!-- Information -->
+            <div class="tool-info">
+
+                <div>
+                    <span>✓</span>
+                    Extracts QR destination
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Checks suspicious URLs
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Detects risky patterns
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Result Section -->
+        <section
+            class="analysis-result"
+            id="qrResult"
+        >
+
+            <div class="result-header">
+
+                <div>
+
+                    <span class="section-tag">
+                        QR ANALYSIS COMPLETE
+                    </span>
+
+                    <h2>QR Code Security Result</h2>
+
+                </div>
+
+                <span
+                    class="risk-badge high-risk"
+                    id="qrRiskStatus"
+                >
+                    High Risk
+                </span>
+
+            </div>
+
+
+            <!-- QR Destination -->
+            <div class="checked-content">
+
+                <span class="checked-label">
+                    QR CODE DESTINATION
+                </span>
+
+                <p id="qrDestination">
+                    The detected destination will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- Risk Score -->
+            <div class="risk-score-section">
+
+                <div class="large-score">
+
+                    <div class="score-value">
+
+                        <strong id="qrRiskScore">
+                            85
+                        </strong>
+
+                        <span>/100</span>
+
+                    </div>
+
+                    <p>Risk Score</p>
+
+                </div>
+
+
+                <div class="risk-meter-container">
+
+                    <div class="risk-meter-labels">
+
+                        <span>Safe</span>
+                        <span>Warning</span>
+                        <span>Suspicious</span>
+                        <span>High Risk</span>
+
+                    </div>
+
+                    <div class="risk-meter">
+
+                        <div
+                            class="risk-meter-fill high-fill"
+                            id="qrRiskMeter"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Result Details -->
+            <div class="result-details">
+
+
+                <!-- Reasons -->
+                <div class="result-box">
+
+                    <h3>⚠️ Reasons Detected</h3>
+
+                    <ul id="qrReasons">
+
+                        <li>
+                            Suspicious destination URL detected
+                        </li>
+
+                        <li>
+                            Unusual website domain found
+                        </li>
+
+                        <li>
+                            Possible phishing-related pattern
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Recommendations -->
+                <div class="result-box recommendation-box">
+
+                    <h3>🛡️ Recommended Action</h3>
+
+                    <ul>
+
+                        <li>
+                            Do not enter sensitive information.
+                        </li>
+
+                        <li>
+                            Verify the destination website.
+                        </li>
+
+                        <li>
+                            Avoid unknown payment pages.
+                        </li>
+
+                        <li>
+                            Use official websites directly.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- Actions -->
+            <div class="result-actions">
+
+                <button
+                    class="secondary-action-btn"
+                    onclick="resetQrCheck()"
+                >
+                    ← Scan Another QR Code
+                </button>
+
+                <button
+                    class="primary-action-btn"
+                    onclick="saveCheck('QR Code')"
+                >
+                    💾 Save Result
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+
+            <div class="section-heading">
+
+                <span class="section-tag">
+                    HOW IT WORKS
+                </span>
+
+                <h2>Scan Before You Visit</h2>
+
+                <p>
+                    QR codes can hide website links. Check the destination first.
+                </p>
+
+            </div>
+
+
+            <div class="steps-container">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h3>Upload QR Code</h3>
+
+                    <p>
+                        Select the QR code image from your device.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h3>Scan QR Code</h3>
+
+                    <p>
+                        CyberGuard extracts the QR destination.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h3>Check Risk</h3>
+
+                    <p>
+                        Get a security score and safety advice.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Safety Warning -->
+        <section class="security-warning">
+
+            <div class="warning-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <h3>QR Code Safety Tip</h3>
+
+                <p>
+                    A QR code can contain a hidden website link. Avoid
+                    entering passwords, OTPs, banking information, or
+                    payment details unless you have verified the destination.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CyberGuard | Scan Before You Trust 🛡️
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

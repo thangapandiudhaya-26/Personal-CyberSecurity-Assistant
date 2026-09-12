@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="profile.html">Profile</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- PROFILE SECTION -->
+
+    <main class="profile-container">
+
+        <div class="profile-card">
+
+            <h1>👤 My Profile</h1>
+
+            <p class="profile-subtitle">
+                View and update your CyberGuard account details
+            </p>
+
+
+            <!-- MESSAGE -->
+
+            <p id="message"></p>
+
+
+            <!-- NAME -->
+
+            <label for="name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+            >
+
+
+            <!-- EMAIL -->
+
+            <label for="email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                readonly
+            >
+
+
+            <!-- PASSWORD -->
+
+            <label for="password">
+                New Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Leave empty to keep current password"
+            >
+
+
+            <!-- UPDATE BUTTON -->
+
+            <button onclick="updateProfile()">
+
+                💾 Save Changes
+
+            </button>
+
+
+            <br><br>
+
+
+            <!-- LOGOUT BUTTON -->
+
+            <button
+                onclick="logout()"
+                class="logout-button"
+            >
+
+                🚪 Logout
+
+            </button>
+
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        // =====================================
+        // LOAD USER PROFILE
+        // =====================================
+
+        async function loadProfile() {
+
+            const messageBox =
+                document.getElementById("message");
+
+            try {
+
+                const response =
+                    await fetch("/api/profile");
+
+                const data =
+                    await response.json();
+
+
+                // USER NOT LOGGED IN
+
+                if (!data.success) {
+
+                    messageBox.innerText =
+                        "Please login first.";
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 1500);
+
+                    return;
+                }
+
+
+                // DISPLAY USER DETAILS
+
+                document.getElementById("name").value =
+                    data.name;
+
+                document.getElementById("email").value =
+                    data.email;
+
+
+            }
+
+            catch (error) {
+
+                messageBox.innerText =
+                    "Unable to connect to server.";
+
+            }
+
+        }
+
+
+        // =====================================
+        // UPDATE PROFILE
+        // =====================================
+
+        async function updateProfile() {
+
+            const name =
+                document.getElementById("name")
+                .value
+                .trim();
+
+            const password =
+                document.getElementById("password")
+                .value;
+
+            const messageBox =
+                document.getElementById("message");
+
+
+            // VALIDATION
+
+            if (!name) {
+
+                messageBox.innerText =
+                    "Please enter your name.";
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/update-profile",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    name: name,
+
+                                    password: password
+
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.success) {
+
+                    messageBox.innerText =
+                        "✅ Profile updated successfully!";
+
+
+                    // CLEAR PASSWORD FIELD
+
+                    document.getElementById(
+                        "password"
+                    ).value = "";
+
+
+                    // UPDATE NAME FIELD
+
+                    document.getElementById(
+                        "name"
+                    ).value = data.name;
+
+                }
+
+                else {
+
+                    messageBox.innerText =
+                        "❌ " + data.message;
+
+                }
+
+            }
+
+            catch (error) {
+
+                messageBox.innerText =
+                    "❌ Unable to connect to server.";
+
+            }
+
+        }
+
+
+        // =====================================
+        // LOGOUT
+        // =====================================
+
+        async function logout() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/logout",
+                        {
+
+                            method: "POST"
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (data.success) {
+
+                    alert(
+                        "Logged out successfully!"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+            }
+
+            catch (error) {
+
+                alert(
+                    "Unable to connect to server."
+                );
+
+            }
+
+        }
+
+
+        // =====================================
+        // LOAD PROFILE WHEN PAGE OPENS
+        // =====================================
+
+        loadProfile();
+
+    </script>
+
+</body>
+
+</html>

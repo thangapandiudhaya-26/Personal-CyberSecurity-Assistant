@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>URL Security Checker - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="url-checker.html" class="active">URL Checker</a>
+            <a href="message-checker.html">Message</a>
+            <a href="email-checker.html">Email</a>
+            <a href="payment-checker.html">Payment</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="checker-page">
+
+        <div class="page-header">
+
+            <h1>🔗 URL Security Checker</h1>
+
+            <p>
+                Check whether a website link may be suspicious
+                before opening it.
+            </p>
+
+        </div>
+
+
+        <!-- URL CHECKER CARD -->
+
+        <section class="checker-card">
+
+            <h2>Analyze a Website URL</h2>
+
+            <p class="description">
+                Paste a website link below and CyberGuard
+                will analyze possible security risks.
+            </p>
+
+
+            <!-- IMPORTANT:
+                 FORM HAS NO NORMAL SUBMIT ACTION
+                 JAVASCRIPT PREVENTS PAGE RELOAD
+            -->
+
+            <form id="urlForm">
+
+                <div class="input-group">
+
+                    <label for="urlInput">
+                        Website URL
+                    </label>
+
+                    <input
+                        type="text"
+                        id="urlInput"
+                        placeholder="Example: https://example.com"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    🔍 Analyze URL
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESULT SECTION -->
+
+        <section
+            id="urlResult"
+            class="result-card"
+            style="display: none;"
+        >
+
+            <div class="result-header">
+
+                <h2>
+                    🛡️ Security Analysis Result
+                </h2>
+
+                <span
+                    id="urlRiskBadge"
+                    class="risk-badge"
+                >
+                    ANALYZING
+                </span>
+
+            </div>
+
+
+            <!-- CHECKED URL -->
+
+            <div class="result-item">
+
+                <h3>
+                    🔗 Checked URL
+                </h3>
+
+                <p id="checkedURL">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- RISK SCORE -->
+
+            <div class="score-section">
+
+                <h3>
+                    Risk Score
+                </h3>
+
+                <div class="score-number">
+
+                    <span id="urlScore">
+                        0
+                    </span>
+
+                    <span class="score-total">
+                        / 100
+                    </span>
+
+                </div>
+
+
+                <!-- RISK METER -->
+
+                <div class="risk-meter">
+
+                    <div
+                        id="urlMeter"
+                        class="risk-meter-fill"
+                        style="width: 0%;"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETECTED RISKS -->
+
+            <div class="result-item">
+
+                <h3>
+                    ⚠️ Risks Detected
+                </h3>
+
+                <ul id="urlRisks">
+
+                    <li>
+                        Analysis will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+
+            <div class="result-item">
+
+                <h3>
+                    💡 Security Recommendations
+                </h3>
+
+                <ul id="urlRecommendations">
+
+                    <li>
+                        Recommendations will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="clearResult('urlResult')"
+            >
+                Close Result
+            </button>
+
+        </section>
+
+
+        <!-- SECURITY TIPS -->
+
+        <section class="tips-card">
+
+            <h2>
+                🛡️ URL Safety Tips
+            </h2>
+
+            <div class="tips-grid">
+
+                <div class="tip">
+
+                    <h3>🔒 Check HTTPS</h3>
+
+                    <p>
+                        Prefer websites that use HTTPS,
+                        but remember HTTPS alone does not
+                        guarantee that a website is safe.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>⚠️ Check the Domain</h3>
+
+                    <p>
+                        Watch for unusual spelling,
+                        extra words, and suspicious domains.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>🚨 Don't Rush</h3>
+
+                    <p>
+                        Be careful with links that use
+                        urgent or threatening language.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- FORM SUBMIT HANDLER -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const urlForm =
+                    document.getElementById(
+                        "urlForm"
+                    );
+
+                if (urlForm) {
+
+                    urlForm.addEventListener(
+                        "submit",
+                        async function (event) {
+
+                            // STOP PAGE RELOAD
+                            event.preventDefault();
+
+                            // RUN URL ANALYSIS
+                            await checkURL();
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

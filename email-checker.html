@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email Security Checker - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="url-checker.html">URL Checker</a>
+            <a href="message-checker.html">Message</a>
+            <a href="email-checker.html" class="active">Email</a>
+            <a href="payment-checker.html">Payment</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="checker-page">
+
+        <div class="page-header">
+
+            <h1>📧 Email Security Checker</h1>
+
+            <p>
+                Analyze suspicious emails for common phishing and scam patterns.
+            </p>
+
+        </div>
+
+
+        <!-- EMAIL CHECKER -->
+
+        <section class="checker-card">
+
+            <h2>Analyze an Email</h2>
+
+            <p class="description">
+                Enter the sender, subject, and email content below.
+                CyberGuard will check for suspicious patterns.
+            </p>
+
+
+            <form id="emailForm">
+
+                <!-- SENDER -->
+
+                <div class="input-group">
+
+                    <label for="emailSender">
+                        Sender Email
+                    </label>
+
+                    <input
+                        type="text"
+                        id="emailSender"
+                        placeholder="Example: support@example.com"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- SUBJECT -->
+
+                <div class="input-group">
+
+                    <label for="emailSubject">
+                        Email Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="emailSubject"
+                        placeholder="Example: Urgent! Verify your account"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL CONTENT -->
+
+                <div class="input-group">
+
+                    <label for="emailContent">
+                        Email Content
+                    </label>
+
+                    <textarea
+                        id="emailContent"
+                        rows="9"
+                        placeholder="Paste the email message here..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- ANALYZE BUTTON -->
+
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    🔍 Analyze Email
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESULT SECTION -->
+
+        <section
+            id="emailResult"
+            class="result-card"
+            style="display: none;"
+        >
+
+            <div class="result-header">
+
+                <h2>
+                    🛡️ Email Security Analysis
+                </h2>
+
+                <span
+                    id="emailRiskBadge"
+                    class="risk-badge"
+                >
+                    ANALYZING
+                </span>
+
+            </div>
+
+
+            <!-- CHECKED EMAIL -->
+
+            <div class="result-item">
+
+                <h3>
+                    📧 Sender
+                </h3>
+
+                <p id="checkedEmail">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- RISK SCORE -->
+
+            <div class="score-section">
+
+                <h3>
+                    Risk Score
+                </h3>
+
+                <div class="score-number">
+
+                    <span id="emailScore">
+                        0
+                    </span>
+
+                    <span class="score-total">
+                        / 100
+                    </span>
+
+                </div>
+
+
+                <div class="risk-meter">
+
+                    <div
+                        id="emailMeter"
+                        class="risk-meter-fill"
+                        style="width: 0%;"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RISKS -->
+
+            <div class="result-item">
+
+                <h3>
+                    ⚠️ Risks Detected
+                </h3>
+
+                <ul id="emailRisks">
+
+                    <li>
+                        Analysis will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+
+            <div class="result-item">
+
+                <h3>
+                    💡 Safety Recommendations
+                </h3>
+
+                <ul id="emailRecommendations">
+
+                    <li>
+                        Recommendations will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="clearResult('emailResult')"
+            >
+                Close Result
+            </button>
+
+        </section>
+
+
+        <!-- EMAIL SAFETY TIPS -->
+
+        <section class="tips-card">
+
+            <h2>
+                🛡️ Email Safety Tips
+            </h2>
+
+            <div class="tips-grid">
+
+                <div class="tip">
+
+                    <h3>👤 Check the Sender</h3>
+
+                    <p>
+                        Carefully check the full sender email address,
+                        not just the display name.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>🔗 Be Careful with Links</h3>
+
+                    <p>
+                        Avoid opening unexpected links in emails.
+                        Verify the website before entering information.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>📎 Check Attachments</h3>
+
+                    <p>
+                        Be cautious with unexpected attachments
+                        and downloads.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- STOP PAGE RELOAD AND ANALYZE -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const emailForm =
+                    document.getElementById(
+                        "emailForm"
+                    );
+
+                if (emailForm) {
+
+                    emailForm.addEventListener(
+                        "submit",
+                        async function (event) {
+
+                            event.preventDefault();
+
+                            await checkEmail();
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

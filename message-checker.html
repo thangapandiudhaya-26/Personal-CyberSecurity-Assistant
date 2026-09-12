@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scam Message Detector - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="url-checker.html">URL Checker</a>
+            <a href="message-checker.html" class="active">Message</a>
+            <a href="email-checker.html">Email</a>
+            <a href="payment-checker.html">Payment</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="checker-page">
+
+        <div class="page-header">
+
+            <h1>💬 Scam Message Detector</h1>
+
+            <p>
+                Paste a suspicious SMS, WhatsApp message, or other message
+                and CyberGuard will analyze possible scam patterns.
+            </p>
+
+        </div>
+
+
+        <!-- MESSAGE CHECKER CARD -->
+
+        <section class="checker-card">
+
+            <h2>Analyze a Suspicious Message</h2>
+
+            <p class="description">
+                Do not click suspicious links or share passwords, OTPs,
+                or sensitive information. Paste the message here for analysis.
+            </p>
+
+
+            <form id="messageForm">
+
+                <div class="input-group">
+
+                    <label for="messageInput">
+                        Paste Suspicious Message
+                    </label>
+
+                    <textarea
+                        id="messageInput"
+                        rows="8"
+                        placeholder="Example: Your bank account will be blocked today. Verify immediately by clicking this link..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    🔍 Analyze Message
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESULT SECTION -->
+
+        <section
+            id="messageResult"
+            class="result-card"
+            style="display: none;"
+        >
+
+            <div class="result-header">
+
+                <h2>
+                    🛡️ Message Security Analysis
+                </h2>
+
+                <span
+                    id="messageRiskBadge"
+                    class="risk-badge"
+                >
+                    ANALYZING
+                </span>
+
+            </div>
+
+
+            <!-- CHECKED MESSAGE -->
+
+            <div class="result-item">
+
+                <h3>
+                    💬 Checked Message
+                </h3>
+
+                <p id="checkedMessage">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- RISK SCORE -->
+
+            <div class="score-section">
+
+                <h3>
+                    Risk Score
+                </h3>
+
+                <div class="score-number">
+
+                    <span id="messageScore">
+                        0
+                    </span>
+
+                    <span class="score-total">
+                        / 100
+                    </span>
+
+                </div>
+
+
+                <div class="risk-meter">
+
+                    <div
+                        id="messageMeter"
+                        class="risk-meter-fill"
+                        style="width: 0%;"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RISKS DETECTED -->
+
+            <div class="result-item">
+
+                <h3>
+                    ⚠️ Risks Detected
+                </h3>
+
+                <ul id="messageRisks">
+
+                    <li>
+                        Analysis will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- SAFETY RECOMMENDATIONS -->
+
+            <div class="result-item">
+
+                <h3>
+                    💡 Safety Recommendations
+                </h3>
+
+                <ul id="messageRecommendations">
+
+                    <li>
+                        Recommendations will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="clearResult('messageResult')"
+            >
+                Close Result
+            </button>
+
+        </section>
+
+
+        <!-- SAFETY TIPS -->
+
+        <section class="tips-card">
+
+            <h2>
+                🛡️ How to Identify Scam Messages
+            </h2>
+
+            <div class="tips-grid">
+
+                <div class="tip">
+
+                    <h3>🚨 Urgent Language</h3>
+
+                    <p>
+                        Be careful with messages that pressure you to
+                        act immediately or threaten account closure.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>🔐 OTP and Password Requests</h3>
+
+                    <p>
+                        Never share your OTP, password, PIN, or other
+                        sensitive information through messages.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>🔗 Suspicious Links</h3>
+
+                    <p>
+                        Do not open unknown links before checking
+                        where they lead.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+    <!-- MAIN JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- PREVENT FORM RELOAD -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const messageForm =
+                    document.getElementById(
+                        "messageForm"
+                    );
+
+                if (messageForm) {
+
+                    messageForm.addEventListener(
+                        "submit",
+                        async function (event) {
+
+                            // STOP PAGE RELOAD
+                            event.preventDefault();
+
+                            // RUN MESSAGE ANALYSIS
+                            await checkMessage();
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Scam Checker - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="url-checker.html">URL Checker</a>
+            <a href="message-checker.html">Message</a>
+            <a href="email-checker.html">Email</a>
+            <a href="payment-checker.html" class="active">Payment</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="checker-page">
+
+        <div class="page-header">
+
+            <h1>💳 Payment Scam Checker</h1>
+
+            <p>
+                Analyze suspicious payment requests and identify possible scam patterns.
+            </p>
+
+        </div>
+
+
+        <!-- PAYMENT CHECKER -->
+
+        <section class="checker-card">
+
+            <h2>Analyze a Payment Request</h2>
+
+            <p class="description">
+                Paste a suspicious payment message or request below.
+                CyberGuard will check it for possible scam patterns.
+            </p>
+
+
+            <form id="paymentForm">
+
+                <div class="input-group">
+
+                    <label for="paymentInput">
+                        Payment Message or Request
+                    </label>
+
+                    <textarea
+                        id="paymentInput"
+                        rows="8"
+                        placeholder="Example: Pay immediately to receive your refund..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    💳 Analyze Payment
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESULT SECTION -->
+
+        <section
+            id="paymentResult"
+            class="result-card"
+            style="display: none;"
+        >
+
+            <div class="result-header">
+
+                <h2>🛡️ Payment Security Analysis</h2>
+
+                <span
+                    id="paymentRiskBadge"
+                    class="risk-badge"
+                >
+                    ANALYZING
+                </span>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <h3>💳 Checked Payment Request</h3>
+
+                <p id="checkedPayment">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- RISK SCORE -->
+
+            <div class="score-section">
+
+                <h3>Risk Score</h3>
+
+                <div class="score-number">
+
+                    <span id="paymentScore">0</span>
+
+                    <span class="score-total">/ 100</span>
+
+                </div>
+
+
+                <div class="risk-meter">
+
+                    <div
+                        id="paymentMeter"
+                        class="risk-meter-fill"
+                        style="width: 0%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RISKS -->
+
+            <div class="result-item">
+
+                <h3>⚠️ Risks Detected</h3>
+
+                <ul id="paymentRisks">
+
+                    <li>Analysis will appear here.</li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+
+            <div class="result-item">
+
+                <h3>💡 Safety Recommendations</h3>
+
+                <ul id="paymentRecommendations">
+
+                    <li>Recommendations will appear here.</li>
+
+                </ul>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="clearResult('paymentResult')"
+            >
+                Close Result
+            </button>
+
+        </section>
+
+
+        <!-- SAFETY TIPS -->
+
+        <section class="tips-card">
+
+            <h2>🛡️ Payment Safety Tips</h2>
+
+            <div class="tips-grid">
+
+                <div class="tip">
+
+                    <h3>🔐 Never Share OTP</h3>
+
+                    <p>
+                        Never share your OTP, PIN, CVV, or password
+                        with anyone.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>⚠️ Avoid Urgent Payments</h3>
+
+                    <p>
+                        Be careful when someone pressures you
+                        to send money immediately.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>👤 Verify Recipient</h3>
+
+                    <p>
+                        Always verify the person or organization
+                        before sending money.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- PAYMENT FORM HANDLER -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const paymentForm =
+                    document.getElementById(
+                        "paymentForm"
+                    );
+
+                if (paymentForm) {
+
+                    paymentForm.addEventListener(
+                        "submit",
+                        async function (event) {
+
+                            // Stop page reload
+                            event.preventDefault();
+
+                            // Run payment analysis
+                            await checkPayment();
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

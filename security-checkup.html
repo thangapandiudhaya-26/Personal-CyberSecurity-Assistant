@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Security Checkup - CyberGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ CyberGuard
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="url-checker.html">URL Checker</a>
+            <a href="message-checker.html">Message</a>
+            <a href="email-checker.html">Email</a>
+            <a href="payment-checker.html">Payment</a>
+            <a href="security-checkup.html" class="active">Checkup</a>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="checker-page">
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <h1>🛡️ Personal Security Checkup</h1>
+
+            <p>
+                Answer a few simple questions and check your
+                cybersecurity awareness and safety habits.
+            </p>
+
+        </div>
+
+
+        <!-- CHECKUP CARD -->
+
+        <section class="checker-card">
+
+            <h2>🔐 Cybersecurity Safety Check</h2>
+
+            <p class="description">
+                Select the answer that best describes your usual
+                online safety habits.
+            </p>
+
+
+            <form id="securityForm">
+
+
+                <!-- QUESTION 1 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        1. Do you use strong and different passwords
+                        for important accounts?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="password"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="password"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="password"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 2 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        2. Do you avoid sharing OTP, PIN,
+                        passwords, and CVV?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="otp"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="otp"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="otp"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 3 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        3. Do you check suspicious links before
+                        opening them?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="links"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="links"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="links"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 4 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        4. Do you verify unexpected messages
+                        before responding or making payments?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="messages"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="messages"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="messages"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 5 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        5. Do you keep your phone and important
+                        applications updated?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="updates"
+                            value="10"
+                            required
+                        >
+                        Yes, regularly
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="updates"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="updates"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 6 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        6. Do you use two-factor authentication
+                        when it is available?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="twofactor"
+                            value="10"
+                            required
+                        >
+                        Yes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="twofactor"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="twofactor"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 7 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        7. Are you careful when using public Wi-Fi
+                        for important accounts?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="wifi"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="wifi"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="wifi"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 8 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        8. Do you check app permissions before
+                        installing unknown applications?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="apps"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="apps"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="apps"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 9 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        9. Do you check whether a website is
+                        trustworthy before entering personal details?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="website"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="website"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="website"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- QUESTION 10 -->
+
+                <div class="question-box">
+
+                    <h3>
+                        10. Do you avoid downloading files
+                        from unknown sources?
+                    </h3>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="downloads"
+                            value="10"
+                            required
+                        >
+                        Yes, always
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="downloads"
+                            value="5"
+                        >
+                        Sometimes
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="downloads"
+                            value="0"
+                        >
+                        No
+                    </label>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    🛡️ Check My Security Score
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RESULT -->
+
+        <section
+            id="securityResult"
+            class="result-card"
+            style="display: none;"
+        >
+
+            <div class="result-header">
+
+                <h2>
+                    🛡️ Your Security Checkup Result
+                </h2>
+
+                <span
+                    id="securityBadge"
+                    class="risk-badge"
+                >
+                    ANALYZING
+                </span>
+
+            </div>
+
+
+            <!-- SCORE -->
+
+            <div class="score-section">
+
+                <h3>
+                    Your Security Score
+                </h3>
+
+                <div class="score-number">
+
+                    <span id="securityScore">
+                        0
+                    </span>
+
+                    <span class="score-total">
+                        / 100
+                    </span>
+
+                </div>
+
+
+                <div class="risk-meter">
+
+                    <div
+                        id="securityMeter"
+                        class="risk-meter-fill"
+                        style="width: 0%;"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LEVEL -->
+
+            <div class="result-item">
+
+                <h3>
+                    🔐 Security Level
+                </h3>
+
+                <p id="securityLevel">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- ADVICE -->
+
+            <div class="result-item">
+
+                <h3>
+                    💡 Security Recommendations
+                </h3>
+
+                <ul id="securityAdvice">
+
+                    <li>
+                        Complete the checkup to see recommendations.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CLOSE -->
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="closeSecurityResult()"
+            >
+                Close Result
+            </button>
+
+        </section>
+
+
+        <!-- TIPS -->
+
+        <section class="tips-card">
+
+            <h2>
+                🛡️ Quick Security Tips
+            </h2>
+
+            <div class="tips-grid">
+
+                <div class="tip">
+
+                    <h3>
+                        🔐 Protect Passwords
+                    </h3>
+
+                    <p>
+                        Use strong passwords and do not share
+                        them with anyone.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>
+                        🚫 Never Share OTP
+                    </h3>
+
+                    <p>
+                        Banks and trusted organizations should not
+                        ask you to reveal your OTP or password.
+                    </p>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <h3>
+                        🔍 Think Before Clicking
+                    </h3>
+
+                    <p>
+                        Check unknown links and messages before
+                        taking any action.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CyberGuard -
+            Personal Cybersecurity Assistant
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+    <!-- SECURITY CHECKUP LOGIC -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const securityForm =
+                    document.getElementById(
+                        "securityForm"
+                    );
+
+                if (securityForm) {
+
+                    securityForm.addEventListener(
+                        "submit",
+                        function (event) {
+
+                            event.preventDefault();
+
+                            checkSecurity();
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        function checkSecurity() {
+
+            const form =
+                document.getElementById(
+                    "securityForm"
+                );
+
+
+            const formData =
+                new FormData(form);
+
+
+            let totalScore = 0;
+
+
+            for (
+                const value of formData.values()
+            ) {
+
+                totalScore +=
+                    parseInt(value);
+
+            }
+
+
+            const securityScore =
+                document.getElementById(
+                    "securityScore"
+                );
+
+            const securityBadge =
+                document.getElementById(
+                    "securityBadge"
+                );
+
+            const securityLevel =
+                document.getElementById(
+                    "securityLevel"
+                );
+
+            const securityMeter =
+                document.getElementById(
+                    "securityMeter"
+                );
+
+            const securityResult =
+                document.getElementById(
+                    "securityResult"
+                );
+
+
+            securityScore.textContent =
+                totalScore;
+
+
+            securityMeter.style.width =
+                totalScore + "%";
+
+
+            let level = "";
+
+            let advice = [];
+
+
+            if (totalScore >= 80) {
+
+                level =
+                    "EXCELLENT SECURITY";
+
+                advice = [
+
+                    "Your cybersecurity habits are strong.",
+
+                    "Continue using strong and unique passwords.",
+
+                    "Keep your devices and applications updated.",
+
+                    "Continue verifying suspicious messages and links."
+
+                ];
+
+            }
+
+            else if (totalScore >= 60) {
+
+                level =
+                    "GOOD SECURITY";
+
+                advice = [
+
+                    "Your cybersecurity habits are generally good.",
+
+                    "Improve the areas where you selected Sometimes.",
+
+                    "Use two-factor authentication whenever possible.",
+
+                    "Continue checking suspicious links and messages."
+
+                ];
+
+            }
+
+            else if (totalScore >= 40) {
+
+                level =
+                    "MODERATE SECURITY";
+
+                advice = [
+
+                    "Some of your online habits need improvement.",
+
+                    "Avoid sharing sensitive information.",
+
+                    "Use stronger and unique passwords.",
+
+                    "Be more careful with unknown links and downloads."
+
+                ];
+
+            }
+
+            else {
+
+                level =
+                    "NEEDS IMPROVEMENT";
+
+                advice = [
+
+                    "Your cybersecurity habits need immediate improvement.",
+
+                    "Never share OTP, PIN, CVV, or passwords.",
+
+                    "Use strong passwords for important accounts.",
+
+                    "Verify messages before making payments.",
+
+                    "Avoid unknown links and suspicious downloads."
+
+                ];
+
+            }
+
+
+            securityBadge.textContent =
+                level;
+
+
+            securityLevel.textContent =
+                level;
+
+
+            const adviceList =
+                document.getElementById(
+                    "securityAdvice"
+                );
+
+
+            adviceList.innerHTML =
+                "";
+
+
+            advice.forEach(
+                function (item) {
+
+                    const li =
+                        document.createElement(
+                            "li"
+                        );
+
+                    li.textContent =
+                        item;
+
+                    adviceList.appendChild(
+                        li
+                    );
+
+                }
+            );
+
+
+            securityResult.style.display =
+                "block";
+
+
+            securityResult.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }
+
+
+        function closeSecurityResult() {
+
+            const result =
+                document.getElementById(
+                    "securityResult"
+                );
+
+            result.style.display =
+                "none";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
