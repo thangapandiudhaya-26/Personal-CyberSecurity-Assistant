@@ -2,47 +2,26 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Login - CyberGuard</title>
+    <title>Register - CyberGuard</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-
 <body>
-
 
     <nav class="navbar">
 
         <div class="logo">
-
             🛡️ CyberGuard
-
         </div>
 
-
         <div class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="login.html">
-                Login
-            </a>
-
-            <a href="register.html">
-                Register
-            </a>
-
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
         </div>
 
     </nav>
@@ -50,29 +29,37 @@
 
     <main class="checker-page">
 
-
         <section class="checker-card">
-
 
             <div class="page-header">
 
-                <h1>🔐 Login</h1>
+                <h1>📝 Create Your Account</h1>
 
-                <p>
-                    Login to your CyberGuard account.
-                </p>
+                <p>Register to use CyberGuard.</p>
 
             </div>
 
 
-            <form id="loginForm">
+            <form id="registerForm">
 
 
                 <div class="form-group">
 
-                    <label>
-                        Email Address
-                    </label>
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
 
                     <input
                         type="email"
@@ -86,14 +73,26 @@
 
                 <div class="form-group">
 
-                    <label>
-                        Password
-                    </label>
+                    <label>Password</label>
 
                     <input
                         type="password"
                         id="password"
-                        placeholder="Enter your password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
                         required
                     >
 
@@ -104,21 +103,19 @@
                     type="submit"
                     class="analyze-btn"
                 >
-
-                    Login
-
+                    Create Account
                 </button>
 
 
-                <p id="loginMessage"></p>
+                <p id="registerMessage"></p>
 
 
                 <p>
 
-                    Don't have an account?
+                    Already have an account?
 
-                    <a href="register.html">
-                        Register here
+                    <a href="login.html">
+                        Login here
                     </a>
 
                 </p>
@@ -126,9 +123,7 @@
 
             </form>
 
-
         </section>
-
 
     </main>
 
@@ -136,12 +131,19 @@
     <script>
 
         document
-            .getElementById("loginForm")
+            .getElementById("registerForm")
             .addEventListener(
                 "submit",
                 async function(event) {
 
                     event.preventDefault();
+
+
+                    const name =
+                        document
+                            .getElementById("name")
+                            .value
+                            .trim();
 
 
                     const email =
@@ -157,22 +159,41 @@
                             .value;
 
 
+                    const confirmPassword =
+                        document
+                            .getElementById("confirmPassword")
+                            .value;
+
+
                     const message =
                         document
                             .getElementById(
-                                "loginMessage"
+                                "registerMessage"
                             );
 
 
+                    if (
+                        password !==
+                        confirmPassword
+                    ) {
+
+                        message.textContent =
+                            "Passwords do not match.";
+
+                        return;
+
+                    }
+
+
                     message.textContent =
-                        "Logging in...";
+                        "Creating account...";
 
 
                     try {
 
                         const response =
                             await fetch(
-                                "http://127.0.0.1:5000/api/login",
+                                "/api/register",
                                 {
 
                                     method: "POST",
@@ -186,6 +207,8 @@
 
                                     body:
                                         JSON.stringify({
+
+                                            name: name,
 
                                             email: email,
 
@@ -203,32 +226,19 @@
 
                         if (data.success) {
 
-
                             message.textContent =
-                                "Login successful!";
-
-
-                            localStorage.setItem(
-                                "cyberguardUserName",
-                                data.name
-                            );
-
-
-                            localStorage.setItem(
-                                "cyberguardUserEmail",
-                                email
-                            );
+                                "Registration successful! You can now login.";
 
 
                             setTimeout(
                                 function() {
 
                                     window.location.href =
-                                        "dashboard.html";
+                                        "login.html";
 
                                 },
 
-                                1000
+                                1500
                             );
 
                         }
@@ -255,7 +265,6 @@
             );
 
     </script>
-
 
 </body>
 
