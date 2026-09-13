@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register - CyberGuard</title>
+    <title>Login - CyberGuard</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -33,29 +33,14 @@
 
             <div class="page-header">
 
-                <h1>📝 Create Your Account</h1>
+                <h1>🔐 Welcome Back</h1>
 
-                <p>Register to use CyberGuard.</p>
+                <p>Login to continue using CyberGuard.</p>
 
             </div>
 
 
-            <form id="registerForm">
-
-
-                <div class="form-group">
-
-                    <label>Full Name</label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your full name"
-                        required
-                    >
-
-                </div>
-
+            <form id="loginForm">
 
                 <div class="form-group">
 
@@ -78,21 +63,7 @@
                     <input
                         type="password"
                         id="password"
-                        placeholder="Create a password"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Confirm Password</label>
-
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        placeholder="Confirm your password"
+                        placeholder="Enter your password"
                         required
                     >
 
@@ -103,23 +74,20 @@
                     type="submit"
                     class="analyze-btn"
                 >
-                    Create Account
+                    Login
                 </button>
 
 
-                <p id="registerMessage"></p>
+                <p id="loginMessage"></p>
 
 
                 <p>
+                    Don't have an account?
 
-                    Already have an account?
-
-                    <a href="login.html">
-                        Login here
+                    <a href="register.html">
+                        Register here
                     </a>
-
                 </p>
-
 
             </form>
 
@@ -131,20 +99,12 @@
     <script>
 
         document
-            .getElementById("registerForm")
+            .getElementById("loginForm")
             .addEventListener(
                 "submit",
                 async function(event) {
 
                     event.preventDefault();
-
-
-                    const name =
-                        document
-                            .getElementById("name")
-                            .value
-                            .trim();
-
 
                     const email =
                         document
@@ -152,63 +112,34 @@
                             .value
                             .trim();
 
-
                     const password =
                         document
                             .getElementById("password")
                             .value;
 
-
-                    const confirmPassword =
-                        document
-                            .getElementById("confirmPassword")
-                            .value;
-
-
                     const message =
                         document
-                            .getElementById(
-                                "registerMessage"
-                            );
-
-
-                    if (
-                        password !==
-                        confirmPassword
-                    ) {
-
-                        message.textContent =
-                            "Passwords do not match.";
-
-                        return;
-
-                    }
-
+                            .getElementById("loginMessage");
 
                     message.textContent =
-                        "Creating account...";
-
+                        "Logging in...";
 
                     try {
 
                         const response =
                             await fetch(
-                                "/api/register",
+                                "/api/login",
                                 {
 
                                     method: "POST",
 
                                     headers: {
-
                                         "Content-Type":
                                             "application/json"
-
                                     },
 
                                     body:
                                         JSON.stringify({
-
-                                            name: name,
 
                                             email: email,
 
@@ -219,26 +150,22 @@
                                 }
                             );
 
-
                         const data =
                             await response.json();
-
 
                         if (data.success) {
 
                             message.textContent =
-                                "Registration successful! You can now login.";
-
+                                "Login successful!";
 
                             setTimeout(
                                 function() {
 
                                     window.location.href =
-                                        "login.html";
+                                        "dashboard.html";
 
                                 },
-
-                                1500
+                                1000
                             );
 
                         }
@@ -246,7 +173,8 @@
                         else {
 
                             message.textContent =
-                                data.message;
+                                data.message ||
+                                "Invalid email or password.";
 
                         }
 
